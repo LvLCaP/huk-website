@@ -4,7 +4,7 @@ from typing import Optional
 
 ROOT = Path(__file__).parent
 SITE = "https://hukinteractive.io"
-PUB = "ca-pub-5303891145826475"
+PUB = "ca-pub-2479747791019341"
 EMAIL = "gubin2423@gmail.com"
 
 NAV = [
