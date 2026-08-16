@@ -1,0 +1,17 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bg" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(64 52) rotate(55) scale(240)">
+      <stop stop-color="#3BE7FF"/>
+      <stop offset="1" stop-color="#2E6BFF"/>
+    </radialGradient>
+    <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#FFFFFF" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.1"/>
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" rx="56" fill="url(#bg)"/>
+  <circle cx="128" cy="118" r="52" fill="#0B1020" fill-opacity="0.25"/>
+  <circle cx="128" cy="210" r="78" fill="#0B1020" fill-opacity="0.2"/>
+  <circle cx="128" cy="118" r="56" stroke="url(#ring)" stroke-width="3"/>
+  <text x="50%" y="53%" dominant-baseline="middle" text-anchor="middle" font-family="Manrope, Arial, sans-serif" font-size="58" font-weight="700" fill="#FFFFFF">MK</text>
+</svg>
