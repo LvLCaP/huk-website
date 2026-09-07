@@ -26,7 +26,7 @@ html {
 }
 
 body {
-  font-family: "Plus Jakarta Sans", "Manrope", sans-serif;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   color: var(--text);
   background: var(--bg);
   line-height: 1.65;
@@ -91,7 +91,7 @@ a {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-weight: 750;
+  font-weight: 700;
   letter-spacing: -0.03em;
 }
 
@@ -189,10 +189,9 @@ a {
 
 .hero h1,
 .page-hero h1 {
-  font-family: "Instrument Serif", Georgia, serif;
-  font-weight: 400;
-  font-size: clamp(3rem, 6vw, 5.1rem);
-  line-height: 0.98;
+  font-weight: 800;
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  line-height: 1.12;
   letter-spacing: -0.03em;
   margin: 16px 0 18px;
 }
@@ -283,11 +282,10 @@ section {
 }
 
 h2 {
-  font-family: "Instrument Serif", Georgia, serif;
-  font-weight: 400;
-  font-size: clamp(2rem, 4vw, 3rem);
-  letter-spacing: -0.03em;
-  line-height: 1.1;
+  font-weight: 700;
+  font-size: clamp(1.7rem, 3.4vw, 2.3rem);
+  letter-spacing: -0.025em;
+  line-height: 1.2;
 }
 
 .muted {
@@ -387,6 +385,25 @@ h2 {
   gap: 8px;
 }
 
+.project-card h3 a {
+  color: inherit;
+}
+
+.ks-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 28px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.ks-banner h2 {
+  margin-bottom: 8px;
+}
+
 .pill {
   font-size: 0.74rem;
   font-weight: 700;
@@ -395,6 +412,11 @@ h2 {
   border: 1px solid var(--line);
   color: #c9d2ff;
   background: rgba(255, 255, 255, 0.04);
+}
+
+a.pill:hover {
+  color: var(--text);
+  border-color: rgba(123, 134, 255, 0.55);
 }
 
 .pill.live {
@@ -641,4 +663,9 @@ h2 {
   .hero { padding: 56px 0 40px; }
   section { padding: 64px 0; }
   .sponsor-row { grid-template-columns: 1fr; }
+
+  .ks-banner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }

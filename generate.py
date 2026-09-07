@@ -4,8 +4,11 @@ from typing import Optional
 
 ROOT = Path(__file__).parent
 SITE = "https://hukinteractive.io"
-PUB = "ca-pub-2479747791019341"
+PUB = "ca-pub-5303891145826475"
 EMAIL = "gubin2423@gmail.com"
+KS = "https://www.kickstarter.com/projects/hukinteractive/tire-empire-a-tire-factory-tycoon-game"
+SMARTBNB_IOS = "https://apps.apple.com/us/app/smartbnb/id6792449886"
+BRX_IOS = "https://apps.apple.com/us/app/blockrunner-x/id6758046092"
 
 NAV = [
     ("/", "Home", "home"),
@@ -58,8 +61,8 @@ def page(
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/styles.css?v=20260816" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css?v=20260818" />
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={PUB}" crossorigin="anonymous"></script>
   <script type="application/ld+json">
   [{{
@@ -75,7 +78,8 @@ def page(
       "https://www.instagram.com/hukinteractive/",
       "https://x.com/hukinteractive",
       "https://www.patreon.com/c/Hukinteractive",
-      "https://discord.gg/GKa2yTp5jG"
+      "https://discord.gg/GKa2yTp5jG",
+      "{KS}"
     ]
   }},
   {{
@@ -114,6 +118,7 @@ def page(
           <a href="/about/">About</a>
           <a href="/blog/">Blog</a>
           <a href="/contact/">Contact</a>
+          <a href="{KS}" target="_blank" rel="noopener noreferrer">Kickstarter</a>
         </div>
         <div class="footer-links">
           <a href="/privacy/">Privacy Policy</a>
@@ -139,32 +144,49 @@ def page(
     print("wrote", out.relative_to(ROOT))
 
 
+def render_pills(pills):
+    html = []
+    for item in pills:
+        cls, label = item[0], item[1]
+        href = item[2] if len(item) > 2 else None
+        klass = f"pill {cls}".strip()
+        if href:
+            html.append(
+                f'<a class="{klass}" href="{href}" target="_blank" rel="noopener noreferrer">{label}</a>'
+            )
+        else:
+            html.append(f'<span class="{klass}">{label}</span>')
+    return "".join(html)
+
+
 def project_card(href, img, name, blurb, pills):
-    pills_html = "".join(f'<span class="pill {cls}">{label}</span>' for cls, label in pills)
     return f"""
-        <a class="project-card" href="{href}">
-          <div class="thumb"><img src="{img}" alt="{name} icon" width="108" height="108" /></div>
+        <article class="project-card">
+          <a class="thumb" href="{href}"><img src="{img}" alt="{name} icon" width="108" height="108" /></a>
           <div class="body">
-            <h3>{name}</h3>
+            <h3><a href="{href}">{name}</a></h3>
             <p>{blurb}</p>
-            <div class="pills">{pills_html}</div>
+            <div class="pills">{render_pills(pills)}</div>
           </div>
-        </a>"""
+        </article>"""
 
 
 PROJECTS = [
+    ("/projects/tire-empire/", "/assets/projects/tire-empire.svg", "Tire Empire",
+     "A tire factory tycoon. Live on Kickstarter — back the plant.",
+     [("live", "Kickstarter", KS)]),
     ("/projects/block-runner-x/", "/assets/projects/brx.png", "Block Runner X",
      "Fast voxel runner with coin trails. Out now on the App Store.",
-     [("live", "Live"), ("", "iOS")]),
+     [("live", "Live"), ("", "iOS", BRX_IOS)]),
+    ("/projects/smartbnb/", "/assets/projects/smartbnb.png", "SmartBNB",
+     "Operations hub for rental property teams. Available on the App Store.",
+     [("live", "Live"), ("", "iOS", SMARTBNB_IOS), ("", "Android")]),
     ("/projects/till/", "/assets/projects/till.png", "Till",
      "A 30-second cashier shift. Make exact change. Keep the combo alive.",
      [("review", "App Store review"), ("", "iOS")]),
     ("/projects/nook-sort/", "/assets/projects/nook.png", "Nook Sort",
      "Cozy book-sorting puzzle. Fill a shelf, lock the color, keep the shop.",
      [("dev", "In development"), ("", "iOS")]),
-    ("/projects/smartbnb/", "/assets/projects/smartbnb.png", "SmartBNB",
-     "Operations hub for short-term and long-term rental teams.",
-     [("dev", "In development"), ("", "iOS"), ("", "Android")]),
     ("/projects/samurai-vs-yoikai/", "/assets/projects/svy.png", "Samurai vs Yoikai",
      "Lane defense where a samurai holds the line against demons.",
      [("dev", "In development"), ("", "iOS"), ("", "Android")]),
@@ -205,10 +227,10 @@ page(
           <p class="lead">We are a small team making arcade games, cozy puzzles, and useful tools. Unity, native iOS, and Android — from first sketch to the store.</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="/projects/">See what we are building</a>
-            <a class="btn btn-ghost" href="/contact/">Work with us</a>
+            <a class="btn btn-ghost" href="{KS}" target="_blank" rel="noopener noreferrer">Kickstarter</a>
           </div>
           <div class="metrics">
-            <div><strong>6</strong>active projects</div>
+            <div><strong>7</strong>active projects</div>
             <div><strong>iOS + Android</strong>store-ready builds</div>
             <div><strong>2026</strong>shipping year</div>
           </div>
@@ -219,6 +241,17 @@ page(
           <a class="mosaic-card" href="/projects/nook-sort/"><img src="/assets/projects/nook.png" alt="" /><span>Nook Sort</span></a>
           <a class="mosaic-card" href="/projects/smartbnb/"><img src="/assets/projects/smartbnb.png" alt="" /><span>SmartBNB</span></a>
         </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container ks-banner">
+        <div>
+          <p class="section-kicker">On Kickstarter</p>
+          <h2>Tire Empire</h2>
+          <p class="muted">A tire factory tycoon. Back the campaign and help us ship the plant.</p>
+        </div>
+        <a class="btn btn-primary" href="{KS}" target="_blank" rel="noopener noreferrer">View on Kickstarter</a>
       </div>
     </section>
 
@@ -316,7 +349,7 @@ page(
 
 
 def project_page(slug, name, img, status_pills, lead, body, app_id=None, category="GameApplication", extra_links=""):
-    pills = "".join(f'<span class="pill {cls}">{label}</span>' for cls, label in status_pills)
+    pills = render_pills(status_pills)
     url = f"{SITE}/projects/{slug}/"
     ld = software_ld(name, lead, url, app_id, category)
     page(
@@ -355,7 +388,7 @@ project_page(
     "block-runner-x",
     "Block Runner X",
     "/assets/projects/brx.png",
-    [("live", "Live on App Store"), ("", "iOS"), ("", "Endless runner")],
+    [("live", "Live on App Store"), ("", "iOS", BRX_IOS), ("", "Endless runner")],
     "A fast voxel runner with coin trails. Jump, slide, and chase a cleaner line.",
     """
         <p>Block Runner X is our live endless runner. The world is built from chunks you can read at speed: coins pull the eye, gaps ask for a jump, and a miss should restart before frustration sets in.</p>
@@ -411,10 +444,10 @@ project_page(
     "smartbnb",
     "SmartBNB",
     "/assets/projects/smartbnb.png",
-    [("dev", "In development"), ("", "iOS"), ("", "Android"), ("", "App")],
+    [("live", "Live on App Store"), ("", "iOS", SMARTBNB_IOS), ("", "Android"), ("", "App")],
     "An operations hub for rental property teams — owners, managers, staff, and tenants in one workspace.",
     """
-        <p>SmartBNB is not a game. It is the app we are building for people who run short-term and long-term rentals and are tired of chats, notes, and spreadsheets that do not talk to each other.</p>
+        <p>SmartBNB is not a game. It is the app for people who run short-term and long-term rentals and are tired of chats, notes, and spreadsheets that do not talk to each other. It is live on the App Store for iOS.</p>
         <h2>Who it is for</h2>
         <ul>
           <li><strong>Owners</strong> see income, expenses, occupancy, and what needs a decision.</li>
@@ -424,11 +457,26 @@ project_page(
         </ul>
         <h2>What is in the product</h2>
         <p>Role-specific dashboards. Properties with occupied and vacant status. Tasks with triage colors. A three-step clean protocol (photos before, inventory and lock PIN, photos after). Team chats by property. Custom roles so a bookkeeper does not get the same buttons as a handyman. Voice capture for a quick task. Offline-friendly workspace sync.</p>
-        <h2>Pricing we are aiming at</h2>
-        <p>A 30-day trial for the working roles, then a low monthly subscription. Tenants stay free. iOS is native SwiftUI. Android is in active development to match.</p>
-        <p>SmartBNB is in development. If you run a small rental team and want to try an early build, <a href="/contact/">write to us</a>.</p>
+        <h2>Pricing</h2>
+        <p>A 30-day trial for the working roles, then a low monthly subscription. Tenants stay free. iOS is native SwiftUI and available now. Android is still in development.</p>
     """,
+    app_id="6792449886",
     category="BusinessApplication",
+    extra_links=f'<a class="btn btn-primary" href="{SMARTBNB_IOS}" target="_blank" rel="noopener noreferrer">Get it on the App Store</a>',
+)
+
+project_page(
+    "tire-empire",
+    "Tire Empire",
+    "/assets/projects/tire-empire.svg",
+    [("live", "On Kickstarter", KS)],
+    "A tire factory tycoon. Build the plant, keep the line moving, and grow the empire.",
+    f"""
+        <p>Tire Empire is our factory tycoon: you run a tire plant, balance machines, workers, and demand, and try not to stall the line.</p>
+        <p>The campaign is live on Kickstarter. Backing it is the fastest way to get into the build and help us ship.</p>
+        <p><a href="{KS}" target="_blank" rel="noopener noreferrer">Open the Kickstarter page</a>.</p>
+    """,
+    extra_links=f'<a class="btn btn-primary" href="{KS}" target="_blank" rel="noopener noreferrer">Back on Kickstarter</a>',
 )
 
 project_page(
@@ -596,7 +644,7 @@ page(
             <a class="support-link" href="https://www.linkedin.com/groups/18048051/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             <a class="support-link" href="https://www.patreon.com/c/Hukinteractive" target="_blank" rel="noopener noreferrer">Patreon</a>
             <a class="support-link" href="https://ko-fi.com/hukinteractive" target="_blank" rel="noopener noreferrer">Ko-fi</a>
-            <a class="support-link" href="https://www.kickstarter.com/profile/hukinteractive" target="_blank" rel="noopener noreferrer">Kickstarter</a>
+            <a class="support-link" href="{KS}" target="_blank" rel="noopener noreferrer">Kickstarter</a>
           </div>
         </div>
       </div>
@@ -717,6 +765,7 @@ page(
 urls = [
     "/",
     "/projects/",
+    "/projects/tire-empire/",
     "/projects/block-runner-x/",
     "/projects/till/",
     "/projects/nook-sort/",
