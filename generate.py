@@ -743,6 +743,80 @@ page(
     """,
 )
 
+NB_EMAIL = "gubin2423@icloud.com"
+
+page(
+    "/ninebox/privacy/",
+    "Privacy Policy — NineBox",
+    "Privacy policy for the NineBox iPhone and Mac app: local records, on-device OCR, and location used only during a live trip.",
+    f"""
+    <section class="page-hero">
+      <div class="container prose">
+        <p class="breadcrumbs"><a href="/">Home</a> / <a href="/ninebox/privacy/">NineBox</a> / Privacy Policy</p>
+        <h1>NineBox Privacy Policy</h1>
+        <p class="blog-meta">Last updated September 8, 2026</p>
+        <p>NineBox is a record-keeping app published by Huk Interactive for receipts and business mileage. This policy describes what the app accesses and where that data lives.</p>
+        <h2>Data we store on your devices</h2>
+        <p>Receipt photos, extracted text, expense amounts, trip miles, start and end coordinates collected during an active trip, income you type in, and settings are stored in the app’s local database on your iPhone or Mac. NineBox does not operate its own account system or cloud database. Deleting the app deletes that local box unless you exported a copy.</p>
+        <h2>What we do not collect</h2>
+        <ul>
+          <li>We do not require an email or NineBox login.</li>
+          <li>We do not run our own analytics on the contents of your receipts.</li>
+          <li>We do not sell personal information.</li>
+          <li>We do not connect to your bank.</li>
+          <li>We do not sync records through iCloud or CloudKit.</li>
+        </ul>
+        <h2>On-device receipt reading</h2>
+        <p>Text is recognized with Apple’s Vision framework on the device. Receipt images are not sent to a NineBox server for analysis.</p>
+        <h2>Location</h2>
+        <p>Location is used only while you start a live trip, to measure miles. Updates stop when you end the trip. You can add miles by hand instead.</p>
+        <p>When a trip starts and when it ends, NineBox may send those two coordinates to Apple’s reverse-geocoding service so it can suggest a place name. Miles themselves are measured on the device from GPS points and are not sent to Huk Interactive.</p>
+        <h2>Camera and photos</h2>
+        <p>The camera or photo library is used only when you choose to capture or import a receipt. Access is optional.</p>
+        <h2>Purchases</h2>
+        <p>Subscriptions are processed by Apple. Apple’s privacy policy applies to payment data. NineBox only learns whether your Apple ID is entitled to NineBox Pro.</p>
+        <h2>Children</h2>
+        <p>NineBox is not directed at children under 13.</p>
+        <h2>Contact</h2>
+        <p>Questions: <a href="mailto:{NB_EMAIL}">{NB_EMAIL}</a></p>
+      </div>
+    </section>
+    """,
+)
+
+page(
+    "/ninebox/terms/",
+    "Terms of Use — NineBox",
+    "Terms of use for the NineBox iPhone and Mac record-keeping app, including the NineBox Pro subscription.",
+    f"""
+    <section class="page-hero">
+      <div class="container prose">
+        <p class="breadcrumbs"><a href="/">Home</a> / <a href="/ninebox/terms/">NineBox</a> / Terms of Use</p>
+        <h1>NineBox Terms of Use</h1>
+        <p class="blog-meta">Last updated September 8, 2026</p>
+        <p>By downloading or using NineBox you agree to these terms.</p>
+        <h2>What NineBox is</h2>
+        <p>NineBox is a record-keeping tool published by Huk Interactive. It is not a tax preparer, CPA, law firm, or financial advisor. Figures, categories, mileage rates, and “set aside” estimates are for organization only. Confirm everything with a qualified professional before you file.</p>
+        <h2>Mileage rates</h2>
+        <p>Business standard mileage rates follow published IRS figures by trip date, including the 2026 mid-year change. Later IRS notices may require an app update. You are responsible for using the correct method (standard mileage vs. actual expenses) for your situation.</p>
+        <h2>Subscriptions</h2>
+        <p>NineBox Pro is an auto-renewing subscription sold through the Apple App Store: $9.99 per month or $59.99 per year (prices may vary by storefront). The yearly plan includes a free trial where Apple offers one. Payment is charged to your Apple ID. Manage or cancel at least 24 hours before the end of the period in Apple Account settings. The free tier limits new receipts and trips per calendar month; existing records remain visible.</p>
+        <h2>Your records</h2>
+        <p>You own the records you enter. They stay on this device. Keep your own backups by exporting CSV or PDF. Deleting the app deletes local data.</p>
+        <h2>Acceptable use</h2>
+        <p>Do not use NineBox to fabricate records or to submit false information to any tax authority.</p>
+        <h2>Disclaimer of warranties</h2>
+        <p>NineBox is provided “as is.” We do not warrant that OCR, GPS miles, or estimates are complete or accurate.</p>
+        <h2>Limitation of liability</h2>
+        <p>To the maximum extent permitted by law, NineBox and its authors are not liable for tax assessments, penalties, lost deductions, or other damages arising from use of the app.</p>
+        <h2>Contact</h2>
+        <p><a href="mailto:{NB_EMAIL}">{NB_EMAIL}</a></p>
+        <p>Apple’s Standard Licensed Application End User License Agreement also applies: <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">https://www.apple.com/legal/internet-services/itunes/dev/stdeula/</a></p>
+      </div>
+    </section>
+    """,
+)
+
 # 404
 page(
     "/404.html",
@@ -781,6 +855,8 @@ urls = [
     "/privacy/",
     "/terms/",
     "/refund/",
+    "/ninebox/privacy/",
+    "/ninebox/terms/",
 ]
 sitemap = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
 for u in urls:
